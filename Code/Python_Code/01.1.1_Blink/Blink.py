@@ -11,7 +11,7 @@ import time
 ledPin = 17    # define ledPin
 
 def setup():
-    GPIO.setmode(GPIO.BOARD)       # use BCM GPIO Numbering
+    GPIO.setmode(GPIO.BCM)       # use BCM GPIO Numbering
     GPIO.setup(ledPin, GPIO.OUT)   # set the ledPin to OUTPUT mode
     GPIO.output(ledPin, GPIO.LOW)  # make ledPin output LOW level 
     print ('using pin%d'%ledPin)
