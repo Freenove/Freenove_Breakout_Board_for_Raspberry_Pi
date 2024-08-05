@@ -2,37 +2,37 @@
 ########################################################################
 # Filename    : Blink.py
 # Description : Basic usage of GPIO. Let led blink.
-# Author      : www.freenove.com
-# modification: 2019/12/28
+# auther      : www.freenove.com
+# modification: 2024/07/29
 ########################################################################
-import RPi.GPIO as GPIO
-import time
+from gpiozero import LED
+from time import sleep
 
-ledPin = 17    # define ledPin
-
-def setup():
-    GPIO.setmode(GPIO.BCM)       # use BCM GPIO Numbering
-    GPIO.setup(ledPin, GPIO.OUT)   # set the ledPin to OUTPUT mode
-    GPIO.output(ledPin, GPIO.LOW)  # make ledPin output LOW level 
-    print ('using pin%d'%ledPin)
+led = LED(17)           # define LED pin according to BCM Numbering
+'''
+# pins numbering, the following lines are all equivalent
+led = LED(17)           # BCM
+led = LED("GPIO17")     # BCM
+led = LED("BCM17")      # BCM
+led = LED("BOARD11")    # BOARD
+led = LED("WPI0")       # WiringPi
+led = LED("J8:11")      # BOARD
+'''
 
 def loop():
     while True:
-        GPIO.output(ledPin, GPIO.HIGH)  # make ledPin output HIGH level to turn on led
-        print ('led turned on >>>')     # print information on terminal
-        time.sleep(1)                   # Wait for 1 second
-        GPIO.output(ledPin, GPIO.LOW)   # make ledPin output LOW level to turn off led
-        print ('led turned off <<<')
-        time.sleep(1)                   # Wait for 1 second
-
-def destroy():
-    GPIO.cleanup()                      # Release all GPIO
+        led.on()    # turn on LED
+        print ('led turned on >>>')  # print message on terminal
+        sleep(1)    # wait 1 second
+        led.off()   # turn off LED 
+        print ('led turned off <<<') # print message on terminal
+        sleep(1)    # wait 1 second
 
 if __name__ == '__main__':    # Program entrance
     print ('Program is starting ... \n')
-    setup()
     try:
         loop()
-    except KeyboardInterrupt:   # Press ctrl-c to end the program.
-        destroy()
-
+    except KeyboardInterrupt:  # Press ctrl-c to end the program.
+        print("Ending program")
+    finally:
+        led.close()
