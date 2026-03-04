@@ -37,4 +37,5 @@ This product provides the following online documents.
    fnk0080/codes/tutorial/Raspberry_Pi.rst
    fnk0080/codes/tutorial/Breakout_Board.rst
    fnk0080/codes/tutorial/Project_Example.rst
+   fnk0080/codes/tutorial/Design_Explanation.rst
    fnk0080/codes/tutorial/What_s_next.rst
